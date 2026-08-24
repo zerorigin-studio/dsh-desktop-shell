@@ -1,0 +1,21 @@
+{
+  "name": "@coldcgh/dsh-desktop-installer",
+  "version": "0.1.2",
+  "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": ["lib"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ColdCGH/dsh-desktop-shell.git"
+  }
+}
