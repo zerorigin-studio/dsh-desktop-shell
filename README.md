@@ -1,4 +1,4 @@
-# @coldcgh/dsh-desktop-installer
+# @coldcgh/dsh-shell
 
 dsh 桌面壳插件：把 DeepSeek Harness 封装成**真正的桌面客户端**。
 
@@ -12,8 +12,8 @@ dsh 桌面壳插件：把 DeepSeek Harness 封装成**真正的桌面客户端**
 ## 安装
 
 ```bash
-dsh plugin --profile web add @coldcgh/dsh-desktop-installer
-# 然后手动把 "@coldcgh/dsh-desktop-installer" 追加到
+dsh plugin --profile web add @coldcgh/dsh-shell
+# 然后手动把 "@coldcgh/dsh-shell" 追加到
 # ~/.dsh/profiles/web/package.json 的 dsh.profile.bundles 数组
 # 重启 harness
 ```
