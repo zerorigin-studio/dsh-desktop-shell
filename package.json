@@ -1,11 +1,12 @@
 {
   "name": "@coldcgh/dsh-shell",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup",
   "type": "module",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "cordis.patch.yml"
   ],
   "engines": {
     "node": ">=18.0.0"
@@ -18,6 +19,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ColdCGH/dsh-desktop-shell.git"
+    "url": "git+https://github.com/ColdCGH/dsh-shell.git"
   }
 }
