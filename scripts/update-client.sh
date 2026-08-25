@@ -3,7 +3,7 @@
 # 用法: bash scripts/update-client.sh [exe路径]
 set -euo pipefail
 
-SRC="${1:-D:/WorkSpaces/dsh-desktop-shell-client/bin/dsh-desktop-shell-client.exe}"
+SRC="${1:-D:/WorkSpaces/DeepSeekHerness/dsh-desktop-shell-client/bin/dsh-desktop-shell-client.exe}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DST="$ROOT/bin/dsh-desktop-shell-client.exe"
 

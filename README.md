@@ -25,7 +25,7 @@ dsh plugin --profile web add @coldcgh/dsh-desktop-shell
 ## 客户端 exe 查找顺序
 
 1. 本插件包 `bin/dsh-desktop-shell-client.exe`（npm 分发，默认命中）
-2. 开发机客户端仓库构建 `D:/WorkSpaces/dsh-desktop-shell-client/bin/`
+2. 开发机客户端仓库构建 `D:/WorkSpaces/DeepSeekHerness/dsh-desktop-shell-client/bin/`
 3. 安装版兜底 `%LOCALAPPDATA%\Programs\dsh-desktop-shell\`、`...\DeepSeekHarness\`
 
 ## 客户端
@@ -41,7 +41,7 @@ dsh plugin --profile web add @coldcgh/dsh-desktop-shell
 
 ```bash
 bash scripts/update-client.sh
-# 或指定路径：bash scripts/update-client.sh D:/WorkSpaces/dsh-desktop-shell-client/bin/dsh-desktop-shell-client.exe
+# 或指定路径：bash scripts/update-client.sh D:/WorkSpaces/DeepSeekHerness/dsh-desktop-shell-client/bin/dsh-desktop-shell-client.exe
 ```
 
 exe 随包提交 git（~13MB），改完 bump 版本并 `npm publish --registry=https://registry.npmjs.org/`。
