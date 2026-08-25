@@ -1,17 +1,37 @@
 {
-  "name": "@coldcgh/dsh-shell",
-  "version": "0.1.1",
-  "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup",
+  "name": "@coldcgh/dsh-desktop-shell",
+  "version": "0.2.0",
+  "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup, autostart setting",
   "type": "module",
   "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
   "files": [
     "lib",
+    "bin",
     "cordis.patch.yml"
   ],
   "engines": {
     "node": ">=18.0.0"
   },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
   "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
+    },
     "bundle": {
       "patch": "./cordis.patch.yml"
     }

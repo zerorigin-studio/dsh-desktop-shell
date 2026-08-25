@@ -1,5 +1,5 @@
-# dsh-desktop-installer bundle patch: add the desktop launcher installer
+# dsh-desktop-shell bundle patch: add the desktop launcher installer
 # service to the dsh plugin tree.
 - insert:
-    - id: dsh-shell
-      name: '@coldcgh/dsh-shell'
+    - id: dsh-desktop-shell
+      name: '@coldcgh/dsh-desktop-shell'
