@@ -1,6 +1,6 @@
 {
   "name": "@coldcgh/dsh-desktop-shell",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup, autostart setting",
   "type": "module",
   "main": "lib/index.js",
