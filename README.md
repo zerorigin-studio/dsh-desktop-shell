@@ -19,9 +19,3 @@ dsh plugin --profile web add @coldcgh/dsh-desktop-shell
 # ~/.dsh/profiles/web/package.json 的 dsh.profile.bundles 数组
 # 重启 harness
 ```
-
-## 客户端 exe 查找顺序
-
-1. 本插件包 `bin/dsh-desktop-shell-client.exe`（npm 分发，默认命中）
-2. 开发机客户端仓库构建（`D:/WorkSpaces/DeepSeekHerness/dsh-desktop-shell-client/bin/`）
-3. 安装版兜底 `%LOCALAPPDATA%\Programs\dsh-desktop-shell\`、`...\DeepSeekHarness\`
