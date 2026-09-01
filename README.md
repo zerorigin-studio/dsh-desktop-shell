@@ -25,25 +25,3 @@ dsh plugin --profile web add @coldcgh/dsh-desktop-shell
 1. 本插件包 `bin/dsh-desktop-shell-client.exe`（npm 分发，默认命中）
 2. 开发机客户端仓库构建（`D:/WorkSpaces/DeepSeekHerness/dsh-desktop-shell-client/bin/`）
 3. 安装版兜底 `%LOCALAPPDATA%\Programs\dsh-desktop-shell\`、`...\DeepSeekHarness\`
-
-## 客户端
-
-`dsh-desktop-shell-client.exe`（Wails v3 + WebView2）：
-
-- 托盘（显示/设置/退出）；设置页显示 客户端/Harness/插件 版本 + 连接地址
-- 单例锁防双开；启动时自动注册/校验快捷方式
-- runtime 树查找：插件协议 runtimeDir → exe 同目录 `dsh-runtime/` → 开发兜底
-
-## 更新内置 exe
-
-客户端仓库重新构建后，把新 exe 拷到本包 `bin/dsh-desktop-shell-client.exe`，bump 版本并 `npm publish --registry=https://registry.npmjs.org/`。
-
-## 开发
-
-```bash
-npm pack                                # 本地 tgz
-node --expose-internals <runtime>/node_modules/@deepseek-ai/dsh/lib/bin.js plugin --profile web add <tgz>
-# 快速迭代：cp lib/index.js 到 ~/.dsh/profiles/web/node_modules/@coldcgh/dsh-desktop-shell/lib/ 后重启 harness
-```
-
-**注意**：dsh web 需 **Node v22**（≥22.19）。Node 24 的 loader 会把模块版本误标 v2 → boot 图空 → `Failed to load plugins`（实测）。
