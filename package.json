@@ -1,5 +1,5 @@
 {
-  "name": "@coldcgh/dsh-desktop-shell",
+  "name": "@zerorigin-studio/dsh-desktop-shell",
   "version": "0.2.8",
   "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup, autostart setting",
   "type": "module",
@@ -34,6 +34,9 @@
     }
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zerorigin-studio/dsh-desktop-shell.git"
@@ -47,7 +50,7 @@
     "harness",
     "wails"
   ],
-  "author": "coldcgh <42373779+ColdCGH@users.noreply.github.com>",
+  "author": "zerorigin-studio",
   "homepage": "https://github.com/zerorigin-studio/dsh-desktop-shell",
   "bugs": {
     "url": "https://github.com/zerorigin-studio/dsh-desktop-shell/issues"

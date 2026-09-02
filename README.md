@@ -1,4 +1,4 @@
-# @coldcgh/dsh-desktop-shell
+# @zerorigin-studio/dsh-desktop-shell
 
 dsh 桌面壳插件：把 DeepSeek Harness 封装成原生 Windows 桌面客户端。
 
@@ -14,8 +14,8 @@ dsh 桌面壳插件：把 DeepSeek Harness 封装成原生 Windows 桌面客户�
 ## 安装
 
 ```bash
-dsh plugin --profile web add @coldcgh/dsh-desktop-shell
-# 然后手动把 "@coldcgh/dsh-desktop-shell" 追加到
+dsh plugin --profile web add @zerorigin-studio/dsh-desktop-shell
+# 然后手动把 "@zerorigin-studio/dsh-desktop-shell" 追加到
 # ~/.dsh/profiles/web/package.json 的 dsh.profile.bundles 数组
 # 重启 harness
 ```

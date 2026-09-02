@@ -2,4 +2,4 @@
 # service to the dsh plugin tree.
 - insert:
     - id: dsh-desktop-shell
-      name: '@coldcgh/dsh-desktop-shell'
+      name: '@zerorigin-studio/dsh-desktop-shell'
