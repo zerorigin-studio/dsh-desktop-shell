@@ -1,6 +1,6 @@
 {
   "name": "@zerorigin-studio/dsh-desktop-shell",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup, autostart setting",
   "type": "module",
   "main": "lib/index.js",
