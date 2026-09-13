@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0 (2026-09-13)
+
+- **客户端可独立运行（新能力）**：捆绑客户端（bin/dsh-desktop-shell-client.exe → 0.3.0）不再要求机器上先有 dsh。本机没有可用 harness 时，客户端会从发布仓库（Gitee `coldcgh/dsh-runtime`）下载官方 `@deepseek-ai/dsh` 运行时，校验 sha256、解压到 `%LOCALAPPDATA%\dsh-desktop-shell\runtime\<version>`，再自行拉起 harness。下载走匿名直链，客户端不含任何凭证。于是同一个 exe 覆盖两种形态：
+  - **插件形态**（本插件已装、dsh 在跑）：协议文件可达 → 直接附着，行为与 0.2.9 一致；
+  - **独立形态**（裸机）：没有 harness → 下载运行时 → 启动 → 附着。
+  - 加载页会显示下载进度（含百分比），失败显示具体原因；
+  - 设置项新增 `pinnedDshVersion`（锁定运行时版本，留空自动选择）。
+- **协议文件新增 `owner` 字段**：插件写 `owner=plugin`，独立客户端写 `owner=client`。插件卸载（dispose）时只删除自己写的那份，不再误删独立形态留下的状态。历史文件没有该字段时按插件所有处理，向后兼容。
+- **修复**：客户端工作区不再硬编码 `D:\WorkSpaces\DeepSeekHerness`。改为「环境变量 > 设置项 > 历史目录（仅当存在，用于老用户无损迁移）> ~/DeepSeekHarness」。原硬编码会让分发给其它机器的用户把会话写到一个不存在的路径。
+- **修复**：客户端与 harness 的数据根目录现在统一按 `DSH_HOME`（缺省 `~/.dsh`）解析。此前客户端固定用 `~/.dsh`，在设置了 `DSH_HOME` 的环境里会与 harness 各写各的目录。
+- **改进**：harness 启动日志落到 `%LOCALAPPDATA%\dsh-desktop-shell\harness.log`（harness 是隐藏拉起的，此前启动失败没有任何线索）；退出时按 `tasklist` 核对进程名，避免 pid 复用误杀。
+
 ## 0.2.9 (2026-09-03)
 
 - **捆绑桌面客户端升级**（bin/dsh-desktop-shell-client.exe → 0.2.0）：

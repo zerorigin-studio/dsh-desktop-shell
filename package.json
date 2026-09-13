@@ -1,7 +1,7 @@
 {
   "name": "@zerorigin-studio/dsh-desktop-shell",
-  "version": "0.2.9",
-  "description": "dsh desktop shell: wrap the running dsh web (Harness) into a real desktop client — auto-launch, protocol file, shortcut registration & cleanup, autostart setting",
+  "version": "0.3.0",
+  "description": "dsh desktop shell: a real desktop client for DeepSeek Harness — works both as a dsh plugin (wraps a running harness) and standalone (downloads the official runtime and boots harness itself)",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
