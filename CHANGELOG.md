@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.1 (2026-09-13)
+
+- **runtime 存放位置按形态分流**（捆绑客户端 → 0.3.1）：
+  - *插件形态*（exe 由 dsh 插件体系安装，位于 `<DSH_HOME>/profiles/<profile>/node_modules/<pkg>/bin/`）：runtime 用默认位置 `%LOCALAPPDATA%\dsh-desktop-shell-client\runtime\`。那类目录归包管理器（pnpm）所有，升级插件会替换整个包目录，放在旁边的 runtime 会被一起清掉，等于每次升级重下 200MB+。
+  - *独立客户端形态*：runtime 放在 exe 同目录的 `runtime\` 下，「客户端 + runtime」成为一个可整体拷贝、可离线的自包含目录。
+  - 新增设置项 `runtimeLocation`：`auto`（默认，按形态）/ `portable`（随客户端）/ `user`（默认位置）；环境变量 `DSH_SHELL_RUNTIME_DIR` 优先级最高。
+- **设置页新增「运行时」区块**：显示存放位置与实际路径、已下载版本列表（可切换为当前版本、可删除），并从发布仓库匿名查询可下载版本、一键下载（带进度）。WebView2 用户数据与 harness 日志位置不变（固定在 `%LOCALAPPDATA%\dsh-desktop-shell-client\`）。
+- **修复**：runtime 目录从 `%LOCALAPPDATA%\dsh-desktop-shell\` 挪到 `dsh-desktop-shell-client\`。前者是更早版本客户端遗留的 WebView2 用户数据目录（实测 3200+ 文件 / 500MB+ 浏览器 profile），把 runtime 混进去容易在清理浏览器数据时被一并删除。
+
 ## 0.3.0 (2026-09-13)
 
 - **客户端可独立运行（新能力）**：捆绑客户端（bin/dsh-desktop-shell-client.exe → 0.3.0）不再要求机器上先有 dsh。本机没有可用 harness 时，客户端会从发布仓库（Gitee `coldcgh/dsh-runtime`）下载官方 `@deepseek-ai/dsh` 运行时，校验 sha256、解压到 `%LOCALAPPDATA%\dsh-desktop-shell\runtime\<version>`，再自行拉起 harness。下载走匿名直链，客户端不含任何凭证。于是同一个 exe 覆盖两种形态：
