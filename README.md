@@ -45,7 +45,7 @@ dsh plugin --profile web add @zerorigin-studio/dsh-desktop-shell
 
 - 加载页会显示下载进度；失败时显示具体原因。
 - 需要系统安装 Node.js（实测 v22 / v24 均可）。下载走匿名直链，客户端不含任何凭证。
-- **设置页「运行时」**：切换存放位置、查看/切换/删除已下载版本、查询发布仓库并下载新版本。
+- **设置页「运行时」**：切换存放位置、查看/切换/删除已下载版本、查询发布仓库并下载新版本。若 harness 由客户端自己拉起，**切换版本会立即生效**（就地重启 harness 并切到新实例）；若是插件拉起的 harness，则只记录选择、不中断它，重启后生效。
 - **存放位置规则**（设置项 `runtimeLocation`）：
   - `auto`（默认）：插件安装的 exe → `%LOCALAPPDATA%\dsh-desktop-shell-client\runtime\`；独立客户端 → exe 同目录 `runtime\`。
   - `portable` / `user`：强制指定其中之一。
