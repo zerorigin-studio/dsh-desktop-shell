@@ -1,6 +1,6 @@
 {
   "name": "@zerorigin-studio/dsh-desktop-shell",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "dsh desktop shell: a real desktop client for DeepSeek Harness — works both as a dsh plugin (wraps a running harness) and standalone (downloads the official runtime and boots harness itself)",
   "type": "module",
   "main": "lib/index.js",

@@ -8,7 +8,7 @@ dsh 桌面壳插件：把 DeepSeek Harness 封装成原生 Windows 桌面客户�
 - **两种形态，同一个 exe**：
   - *插件形态*（dsh 已在运行）：插件探测 web 端口、写协议文件、启动包内 exe，窗口包裹现有 Harness 进程；
   - *独立形态*（机器上没有 dsh）：exe 自行下载官方运行时并拉起 harness，runtime 就放在 exe 同目录，「客户端 + runtime」可整体拷贝、可离线，可直接当作完整客户端分发（见「独立使用」）。
-- **设置页「运行时」区块**：查看/切换存放位置、列出已下载版本（切换、删除）、从发布仓库查询并一键下载新版本（带下载进度）
+- **设置页分为四个标签页**：通用（自启 / 关闭行为 / 保留 Harness）、运行时（存放位置、已下载版本切换删除、从发布仓库下载新版本）、组件（可选组件安装卸载）、关于（版本与连接信息）。下载/安装进度显示在标签栏下方的常驻区域，任何页面都可见。
 - **自动拉起桌面客户端**：dsh 启动后，插件探测 web 端口、写协议文件、启动包内 exe——独立桌面窗口包裹 Harness UI（无浏览器痕迹）
 - **协议文件**：`~/.dsh/dsh-web-port.json` 写入 `{owner, port, url, pid, harnessVersion, pluginVersion, runtimeDir}`——客户端据此连接，设置页展示版本信息；`owner`（`plugin` / `client`）标识写入者，插件卸载只清理自己写的那份
 - **快捷方式**：桌面 + 开始菜单注册；卸载插件时自动删除
@@ -45,8 +45,8 @@ dsh plugin --profile web add @zerorigin-studio/dsh-desktop-shell
 
 - 加载页会显示下载进度；失败时显示具体原因。
 - 需要系统安装 Node.js（实测 v22 / v24 均可）。下载走匿名直链，客户端不含任何凭证。
-- **设置页「运行时」**：切换存放位置、查看/切换/删除已下载版本、查询发布仓库并下载新版本。若 harness 由客户端自己拉起，**切换版本会立即生效**（就地重启 harness 并切到新实例）；若是插件拉起的 harness，则只记录选择、不中断它，重启后生效。
-- **可选组件（按需安装）**：基础 runtime 不含 Office 转 PDF 所需的 LibreOffice 二进制（约 325MB，占官方整包 79%），需要时在设置页「可选组件」一键安装。组件直接取官方 npm 包（npmmirror 镜像），用 npm 的 sha512 integrity 校验，无需自行托管。
+- **设置页「运行时」标签**：切换存放位置、查看/切换/删除已下载版本、查询发布仓库并下载新版本。若 harness 由客户端自己拉起，**切换版本会立即生效**（就地重启 harness 并切到新实例）；若是插件拉起的 harness，则只记录选择、不中断它，重启后生效。
+- **可选组件（按需安装）**：基础 runtime 不含 Office 转 PDF 所需的 LibreOffice 二进制（约 325MB，占官方整包 79%），需要时在设置页「组件」标签一键安装。组件直接取官方 npm 包（npmmirror 镜像），用 npm 的 sha512 integrity 校验，无需自行托管。
 - **存放位置规则**（设置项 `runtimeLocation`）：
   - `auto`（默认）：插件安装的 exe → `%LOCALAPPDATA%\dsh-desktop-shell-client\runtime\`；独立客户端 → exe 同目录 `runtime\`。
   - `portable` / `user`：强制指定其中之一。
