@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.3 (2026-09-18)
+
+- **统一 Wails 依赖到 beta.23**（捆绑客户端 → 0.5.3）：此前 Go 侧（`go.mod`、CLI、AGENTS.md）已是 `beta.23`，但前端 `@wailsio/runtime` 卡在 `beta.12`——两端不一致，属于"本地能构建、他人可能构建失败"的隐患。
+  - 前端依赖由 `"latest"` 改为**精确锁定** `3.0.0-beta.23`（`--save-exact`）：`latest` 不可复现，正是这次漂移的根源。
+  - 同步更新 `frontend/src/main.ts` 中展示的版本号与 `package-lock.json`。
+  - 现在四处声明完全一致：CLI / `go.mod` / `frontend/package.json` / `main.ts` = `3.0.0-beta.23`。
+- 顺带复测了一项历史记录：文档里"WebView2CompositionHosting 在 beta.12 下启动即崩"的问题，**在 beta.23 下不再复现**（带 `--remote-debugging-port` 启动，进程存活、窗口与 WebView2 数据目录均正常）。文档已更新为已复测。
+- 验证：`go mod verify` 通过、全量测试通过、构建成功，并实跑确认客户端能拉起 harness（协议文件 `owner=client`、窗口标题正常）。
+
 ## 0.5.2 (2026-09-18)
 
 - **修复：启动客户端与打开设置时连闪一串命令行黑框**（捆绑客户端 → 0.5.2）。0.5.1 引入主题跟随后，客户端在启动路径与窗口事件上启动了多个未隐藏的子进程，Windows 会为每个分配控制台，表现为"一串一闪而逝的黑框"。逐个改为不分配控制台：
