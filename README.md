@@ -9,6 +9,7 @@ dsh 桌面壳插件：把 DeepSeek Harness 封装成原生 Windows 桌面客户�
   - *插件形态*（dsh 已在运行）：插件探测 web 端口、写协议文件、启动包内 exe，窗口包裹现有 Harness 进程；
   - *独立形态*（机器上没有 dsh）：exe 自行下载官方运行时并拉起 harness，runtime 就放在 exe 同目录，「客户端 + runtime」可整体拷贝、可离线，可直接当作完整客户端分发（见「独立使用」）。
 - **设置页分为四个标签页**：通用（自启 / 关闭行为 / 保留 Harness）、运行时（存放位置、已下载版本切换删除、从发布仓库下载新版本）、组件（可选组件安装卸载）、关于（版本与连接信息）。下载/安装进度显示在标签栏下方的常驻区域，任何页面都可见。
+- **主题自动跟随 dsh**：设置页与启动加载页都读取 dsh 的 `~/.dsh/settings.yaml` → `ui-theme.preference`（`light`/`dark`/`system`）来决定深浅色，**不提供手动切换**；`system` 时由客户端解析系统明暗并随系统变化实时更新。客户端只读该文档，不写入。
 - **自动拉起桌面客户端**：dsh 启动后，插件探测 web 端口、写协议文件、启动包内 exe——独立桌面窗口包裹 Harness UI（无浏览器痕迹）
 - **协议文件**：`~/.dsh/dsh-web-port.json` 写入 `{owner, port, url, pid, harnessVersion, pluginVersion, runtimeDir}`——客户端据此连接，设置页展示版本信息；`owner`（`plugin` / `client`）标识写入者，插件卸载只清理自己写的那份
 - **快捷方式**：桌面 + 开始菜单注册；卸载插件时自动删除
