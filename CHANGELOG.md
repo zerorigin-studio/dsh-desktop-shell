@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.4 (2026-09-18)
+
+- **启动路径的可见子进程已清零**（捆绑客户端 → 0.5.4），并附带两项稳健性修复：
+  - 就绪地址的获取由 `StdoutPipe` 改为**从日志文件读取**：harness 的 stdout/stderr 现在统一落 `harness.log`，宿主轮询该文件解析 `dsh web: <url>`。好处是 harness 的输出完整留存（此前 stdout 只被扫描、不落盘，出问题时看不到它打的内容），也少一条匿名管道。
+  - 就绪等待加 **5 秒存活宽限期**：此前轮询首轮就用 `tasklist` 判活，而刚 spawn 的进程可能尚未被列出，会被误判成"已退出"而立刻失败。
+- **排查结论（记录以备后续）**：启动时会新增一个 `conhost.exe`，命令行参数为 `0x4`——即 **headless、不显示任何窗口**，由 harness 进程（node）自身派生，与调用方式无关（对照实验：Go 用 CREATE_NO_WINDOW 起 node 不产生；单独起 harness 也会产生）。因此它**不是**用户看到的弹窗，无需也无法从客户端侧消除。
+  - 真正的可见弹窗来源是另两类，均已在 0.5.2 修掉：客户端自身的 `reg`/`tasklist`/`powershell`/`rundll32` 调用（未隐藏时每次调用闪一个黑框），以及插件侧 `reg.exe`（缺 `windowsHide`）。
+  - 另有 WebView2 运行时自身在进程启动时执行的 `reg.exe query ...\\Uninstall /s` 探测，属于运行时内部行为，不在客户端控制范围内。
+
 ## 0.5.3 (2026-09-18)
 
 - **统一 Wails 依赖到 beta.23**（捆绑客户端 → 0.5.3）：此前 Go 侧（`go.mod`、CLI、AGENTS.md）已是 `beta.23`，但前端 `@wailsio/runtime` 卡在 `beta.12`——两端不一致，属于"本地能构建、他人可能构建失败"的隐患。
